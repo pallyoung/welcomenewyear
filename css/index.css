@@ -1,0 +1,100 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #ccc;
+}
+
+a:hover {
+    color: #fff;
+}
+
+ul {
+    list-style: none
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* Main */
+
+html, body {
+    height: 100%;
+    font: normal 20px "Helvetica Neue", Helvetica, sans-serif;
+}
+
+body {
+    user-select: none;
+    -webkit-user-select:none;
+    color: #888;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .3);
+    background: url(../imgs/bg.png) no-repeat;
+    background-size:100% 100%;
+    position: relative;
+
+}
+
+.row1{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20%;
+    margin: auto;
+    text-align: center;
+}
+.row2{
+    position: absolute;
+    top: 20%;
+    left: 30%
+}
+.countdown{
+    display: inline-block;
+    
+}
+.countdown.small{
+    width: 151px;
+}
+.countdown.big{
+    
+}
+.counter{
+    background: url(../imgs/bg_counter.png) no-repeat;
+    background-size: 100% 100%;
+    width: inherit;
+    height: 148px;
+    font: 60px "Helvetica Neue", Helvetica, sans-serif;
+    line-height: 148px;
+    text-align: center;
+   
+}
+
+.label{
+    width:100%;
+    text-align: center;
+}
+.mb{
+    margin-bottom: 20px
+}
+.mr{
+    margin-right: 40px
+}
+.di{
+    display: inline-block;
+}
