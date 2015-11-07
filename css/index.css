@@ -62,7 +62,8 @@ body {
 .row2{
     position: absolute;
     top: 20%;
-    left: 30%
+    text-align: center;
+    width: 100%
 }
 .countdown{
     display: inline-block;
@@ -75,7 +76,7 @@ body {
     
 }
 .counter{
-    background: url(../imgs/bg_counter.png) no-repeat;
+    /*background: url(../imgs/bg_counter.png) no-repeat;*/
     background-size: 100% 100%;
     width: inherit;
     height: 148px;
@@ -84,10 +85,13 @@ body {
     text-align: center;
    
 }
-
+#days{
+    font-size: 100px;
+}
 .label{
     width:100%;
     text-align: center;
+    font-size: 20px;
 }
 .mb{
     margin-bottom: 20px

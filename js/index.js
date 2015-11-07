@@ -30,7 +30,7 @@ function Counter(){
 	this.init();
 }
 Counter.prototype = {
-	init(){
+	init:function(){
 		this.e = new Date(new Date().getFullYear()+1,0,1);
 	},
 	calc:function(){

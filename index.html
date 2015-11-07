@@ -4,21 +4,21 @@
 	<meta charset="UTF-8">
 	<script>
 		var phoneWidth = parseInt(window.screen.width);
-        var phoneScale = phoneWidth / 640;
+        var phoneScale = phoneWidth / 720;
 
         var ua = navigator.userAgent;
         if (/Android (\d+\.\d+)/.test(ua)) {
             var version = parseFloat(RegExp.$1);
                 // andriod 2.3
             if (version > 2.3) {
-                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+                document.write('<meta name="viewport" content="width=720, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
                     // andriod 2.3以上
             } else {
-                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+                document.write('<meta name="viewport" content="width=720, target-densitydpi=device-dpi">');
             }
                 // 其他系统
         } else {
-           document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+           document.write('<meta name="viewport" content="width=720, user-scalable=no, target-densitydpi=device-dpi">');
         }
 	</script>
 	<title>index</title>
@@ -43,8 +43,12 @@
 		</div>
 		<div class="row2">
 			<div class="countdown big">
-				<div class="counter di" style="width: 225px;vertical-align: bottom;" id="days" >12</div>
-				<div class="label di" style="width:auto;vertical-align: bottom;">DAYS</div>
+				<div class="counter di" >
+					<span class="label" style = "opacity:0">DAYS</span>
+					<span id="days" >12</span>
+					<span class="label">DAYS</span>
+				</div>
+				
 			</div>
 
 		</div>
