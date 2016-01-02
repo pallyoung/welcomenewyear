@@ -73,7 +73,7 @@
   
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"groups"
+                                                      moduleName:@"Lost"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
 

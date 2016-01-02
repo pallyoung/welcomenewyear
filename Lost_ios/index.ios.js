@@ -28,6 +28,6 @@ class App extends Component{
 
 
 
-AppRegistry.registerComponent('groups', () => App);
+AppRegistry.registerComponent("Lost", () => App);
 
 module.exports = App;
