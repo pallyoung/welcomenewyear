@@ -1,0 +1,3 @@
+rootProject.name = 'lost'
+
+include ':app'
