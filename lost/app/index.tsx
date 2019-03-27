@@ -10,7 +10,7 @@ import Toast from 'components/Toast'
 import config from 'config'
 import router from 'router';
 
-const INTIAL_ROUTE_NAME = config.env === 'dev' ? 'PageList' : 'Register'
+const INTIAL_ROUTE_NAME = config.env === 'dev' ? 'PageList' : 'Main'
 
 export interface State {
 

@@ -154,12 +154,21 @@ android {
             include "armeabi-v7a", "x86", "arm64-v8a"
         }
     }
+    signingConfigs{
+        release{
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        }
+    }
     buildTypes {
         release {
             buildConfigField ("String", "ENV", '"prod"')
             resValue "string", "app_name", "${appName}"
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
         debug {
             buildConfigField ("String", "ENV", '"dev"')
