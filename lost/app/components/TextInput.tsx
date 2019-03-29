@@ -125,7 +125,6 @@ class Input extends PureComponent<Props, State> {
       }
     }
     let {
-      focus,
       value,
       secureTextVisible,
     } = this.state
@@ -152,25 +151,11 @@ class Input extends PureComponent<Props, State> {
               onPress={this._toggleSecureTextVisible}
               style={styles.secureTextVisibleEye}>
               <FontIcon
-                icon={secureTextVisible ? '&#xe603;' : '&#xe604;'}
+                icon={secureTextVisible ? '&#xe6da;' : '&#xe6e3;'}
                 color="#dbdbdb"
                 size={26} />
             </TouchableOpacity>
-          ) : (
-              <TouchableOpacity
-                activeOpacity={1}
-                onPress={() => { (!secureTextEntry && value) && this._clear() }}
-                style={styles.secureTextVisibleEye}>
-                {
-                  showClearButton ? (
-                    <FontIcon
-                      icon='&#xe607;'
-                      size={22}
-                      color={(secureTextEntry || !value) ? 'transparent' : '#dbdbdb'} />) : null
-                }
-
-              </TouchableOpacity>
-            )
+          ) : null
         }
       </View>
     )

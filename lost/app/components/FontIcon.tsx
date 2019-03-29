@@ -6,9 +6,10 @@ export interface Props {
   icon: string,
   style?: any,
   color?: string,
-  size?: number
+  size?: number,
+  [key: string]: any
 }
-function FontIcon({ icon, style, color, size }: Props) {
+function FontIcon({ icon, style, color, size, ...props }: Props) {
   if (!icon) {
     return null;
   }
@@ -18,7 +19,9 @@ function FontIcon({ icon, style, color, size }: Props) {
   return (
     <Text
       style={[style, { fontFamily: 'iconfont' }, color ? { color } : null, size ? { fontSize: size } : null]}
-      children={icon} />
+      children={icon}
+      {...props}
+    />
   );
 }
 

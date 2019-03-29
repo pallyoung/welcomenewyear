@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { View, Text, Image } from 'react-native-ui'
 import { createStyle } from "themes";
 import { vh, vw } from "utils/resize";
-
+import MusicButton from './MusicButton'
 
 class Counter {
   e: number = 0;
@@ -37,10 +37,10 @@ interface Props {
 
 }
 interface State {
-  days:number,
+  days: number,
   hours: number,
   mins: number,
-  secs: number 
+  secs: number
 }
 class Main extends Component<Props, State> {
   private counter = new Counter();
@@ -50,10 +50,14 @@ class Main extends Component<Props, State> {
     mins: 0,
     secs: 0
   }
+  aninationFrame: any
   componentDidMount() {
     this.start();
   }
-  start=()=> {
+  componentWillUnmount() {
+    this.stop();
+  }
+  start = () => {
     const counter = this.counter;
     counter.calc();
     this.setState({
@@ -62,10 +66,13 @@ class Main extends Component<Props, State> {
       mins: counter.rm,
       secs: counter.rs
     });
-    requestAnimationFrame(this.start);
+    this.aninationFrame = requestAnimationFrame(this.start);
+  }
+  stop() {
+    cancelAnimationFrame(this.aninationFrame)
   }
   render() {
-    const  {
+    const {
       days,
       hours,
       mins,
@@ -142,6 +149,8 @@ class Main extends Component<Props, State> {
                 ]}>SECS</Text>
             </View>
           </View>
+          <MusicButton
+          />
         </View>
       </View>)
   }
@@ -150,7 +159,7 @@ class Main extends Component<Props, State> {
 var styles = createStyle(theme => (
   {
     body: {
-      flex:1,
+      flex: 1,
       flexDirection: "column"
     },
     bg: {

@@ -61,7 +61,7 @@ class NavigationHeader extends PureComponent<NavigationHeaderProps, NavigationHe
     return (
       <TouchableOpacity
         onPress={() => navigation.goBack()}>
-        <FontIcon style={styles.backArrow} icon='&#xe637;' />
+        <FontIcon style={styles.backArrow} icon='&#xe6e7;' />
       </TouchableOpacity>
     )
 
