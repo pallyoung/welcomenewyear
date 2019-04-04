@@ -15,7 +15,9 @@ module.exports = {
       'themes': path.resolve(__dirname, './app/themes'),
       'components': path.resolve(__dirname, './app/components'),
       'router': path.resolve(__dirname, './app/router'),
-      'config': path.resolve(__dirname, './app/config')
+      'config': path.resolve(__dirname, './app/config'),
+      'providers': path.resolve(__dirname, './app/providers'),
+      'actions': path.resolve(__dirname, './app/actions')
     },
   },
   projectRoot: path.resolve(__dirname),

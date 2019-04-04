@@ -8,6 +8,7 @@
     "tsc": " tsc --init --pretty --jsx react"
   },
   "dependencies": {
+    "febrest": "^0.10.1-beta",
     "react": "16.6.3",
     "react-native": "0.58.6",
     "react-native-gesture-handler": "^1.1.0",

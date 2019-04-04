@@ -1,4 +1,4 @@
-import config from '../../../config';
+import config from 'config';
 const publicApiURI = config.publicApiURI;
 
 const publicApiHost = `${publicApiURI.protocol}://${publicApiURI.domain}`
@@ -18,10 +18,13 @@ function onTimeout(result: any) {
 }
 
 function parseUrl(path: string): string {
+  if(path && path.indexOf('http') === 0) {
+    return path;
+  }
   const paths: string[] = path.split('/');
   const host: string = PATH_HOST_MAP[paths[0]];
   if (!host) {
-    throw new Error('can\'t find host for path' + paths[0])
+    throw new Error('can\'t find host for path ' + paths[0])
   }
   paths.shift();
   let url = host + '/' + paths.join('/');
@@ -32,11 +35,11 @@ function attachParamsToUrl(url: string, params: {
 }) {
   let strings = []
   for (let p in params) {
-    strings.push(p + '=' + params[p]);
+    strings.push(encodeURIComponent(p) + '=' + encodeURIComponent(params[p]));
   }
   return url + '?' + strings.join('&')
 }
-function _fetch(url: string, params?: any, method?: string, headers?: Headers) {
+function _fetch<T>(url: string, params?: any, method?: string, headers?: Headers) :Promise<T|string>{
   if (typeof params == 'string') {
     method = params;
     params = null;
@@ -61,8 +64,8 @@ function _fetch(url: string, params?: any, method?: string, headers?: Headers) {
     headers
   }
   if (requestInit.method === 'post') {
-    requestInit.body = params ? JSON.stringify(params) : null;
-    headers.append('content-type', 'application/json');
+    requestInit.body = params ? attachParamsToUrl('',params).slice(1) : null;
+    headers.append('content-type', 'application/x-www-form-urlencoded');
   }
   if (params instanceof FormData) {
     requestInit.mode = 'FormData';
@@ -78,12 +81,12 @@ function _fetch(url: string, params?: any, method?: string, headers?: Headers) {
   return new Promise((resolve, reject) => {
     console.log('请求开始=======', url, params)
     fetch(request).then(response => {
-      response.json().then(data => {
+      response.text().then(data => {
         console.log('请求成功=======', url, data)
-        if (data && data.status === 200) {
-          resolve(data.data);
-        } else {
-          reject(data)
+        try{
+          resolve(JSON.parse(data));
+        }catch(e) {
+          resolve(data);
         }
       })
       clearTimeout(timeout)

@@ -8,6 +8,14 @@ import Navigation from 'components/Navigation'
 import Toast from 'components/Toast'
 import config from 'config'
 import router from 'router';
+import providers from 'providers'
+import actions from 'actions'
+import {provider,action,dispatch} from 'febrest'
+
+provider(providers);
+actions.forEach(({namespace,controller})=>{
+  action(namespace,controller)
+})
 
 const INTIAL_ROUTE_NAME = config.env === 'dev' ? 'PageList' : 'Main'
 

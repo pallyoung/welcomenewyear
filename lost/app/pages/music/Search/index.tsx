@@ -5,6 +5,9 @@ import FontIcon from 'components/FontIcon'
 import Header from 'components/Header'
 import { NavigationConsumer } from 'components/Navigation'
 import { createStyle } from 'themes';
+import { dispatch } from 'febrest'
+import MusicList from './MusicList';
+import EngineBar from './EngineBar'
 export default class Search extends PureComponent {
   static getNavigationOptions() {
     return {
@@ -12,8 +15,25 @@ export default class Search extends PureComponent {
       header: null
     }
   }
-  private _search=()=>{
-    
+  state = {
+    keyword: '',
+    curPage: 1,
+    songs: [],
+    platform: 'qq'
+  }
+  private _search = () => {
+    const {
+      keyword,
+      curPage,
+      platform
+    } = this.state;
+    dispatch('music.search', { keyword, curPage, platform }).then(({ list, total }:any) => {
+      this.setState({songs:list})
+    })
+  }
+  private _changePlatform=(platform:string)=>{
+    this.state.platform = platform;
+    this._search()
   }
   render() {
     return (
@@ -21,7 +41,8 @@ export default class Search extends PureComponent {
         {
           ({ navigation }) => {
             return (
-              < View >
+              <View 
+                style={styles.wrapper}>
                 <Header
                   leftButton={
                     <TouchableOpacity
@@ -35,15 +56,17 @@ export default class Search extends PureComponent {
                     <View>
                       <TextInput
                         style={styles.input}
-                        placeholder="搜索音乐" 
+                        placeholder="搜索音乐"
                         placeholderTextColor="#ffffff88"
                         returnKeyType="search"
-                        onSubmitEditing={this._search}/>
+                        onChangeText={v => this.state.keyword = v}
+                        onSubmitEditing={this._search} />
                     </View>
                   } />
-                <Text>
-                  search
-              </Text>
+                  <EngineBar 
+                    onChange={this._changePlatform}/>
+                  <MusicList
+                    data={this.state.songs} />
               </View>
             )
           }
@@ -56,6 +79,9 @@ export default class Search extends PureComponent {
 
 const styles = createStyle(theme => {
   return {
+    wrapper: {
+      flex: 1
+    },
     backArrow: {
       color: theme.navigationHeaderColor
     },
