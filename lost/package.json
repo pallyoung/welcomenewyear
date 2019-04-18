@@ -12,6 +12,7 @@
     "react": "16.6.3",
     "react-native": "0.58.6",
     "react-native-gesture-handler": "^1.1.0",
+    "react-native-modalui": "^1.0.4",
     "react-native-theme-stylesheet": "^1.0.0",
     "react-navigation": "^3.5.1"
   },

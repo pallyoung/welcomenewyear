@@ -1,17 +1,19 @@
 import React, { PureComponent } from 'react'
-import {View,Text,FlatList,TouchableOpacity} from 'react-native-ui'
+import { View, Text, FlatList, TouchableOpacity } from 'react-native-ui'
 import { createStyle } from 'themes';
 import { Singer, Song } from 'providers/MusicProvider/MusicEngine';
+import FontIcon from 'components/FontIcon'
 
 interface Props {
-  data: Song[]
+  data: Song[],
+  onItemMenuPress: (song:Song)=>void
 }
 interface State {
 
 }
-export default class MusicList extends PureComponent<Props,State> {
+export default class MusicList extends PureComponent<Props, State> {
 
-  private _renderItem({item}:{item:Song,index:number}) {
+  private _renderItem=({ item }: { item: Song, index: number })=> {
     return (
       <TouchableOpacity
         style={styles.item}>
@@ -23,7 +25,7 @@ export default class MusicList extends PureComponent<Props,State> {
           </Text>
           <Text
             style={styles.singer}>
-            {item.singer.map((item:Singer)=>{
+            {item.singer.map((item: Singer) => {
               return item.name
             }).join(' ')}
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -33,6 +35,13 @@ export default class MusicList extends PureComponent<Props,State> {
             </Text>
           </Text>
         </View>
+        <TouchableOpacity
+          style={styles.iconMoreButton}
+          onPress={()=>this.props.onItemMenuPress(item)}>
+          <FontIcon 
+            icon="&#xe630;"
+            size={26}/>
+        </TouchableOpacity>
       </TouchableOpacity>
     );
   }
@@ -42,11 +51,11 @@ export default class MusicList extends PureComponent<Props,State> {
       data
     } = this.props;
     return (
-      <FlatList 
+      <FlatList
         data={data}
         renderItem={this._renderItem}
-        keyExtractor={(item)=>item.id}
-        style={styles.wrapper}/>
+        keyExtractor={(item) => 'key_' + item.id}
+        style={styles.wrapper} />
     );
   }
 }
@@ -57,13 +66,20 @@ const styles = createStyle(theme => {
       flex: 1
     },
     item: {
-      height:48,
+      height: 48,
       paddingLeft: 8
     },
     itemContent: {
       flex: 1,
       borderBottomColor: theme.borderColor,
       borderBottomWidth: theme.px,
+    },
+    iconMoreButton:{
+      position:'absolute',
+      height: 48,
+      right: 0,
+      paddingHorizontal: 8,
+      justifyContent: 'center'
     },
     title: {
       color: '#333',

@@ -1,11 +1,11 @@
 
 import { boardcast } from 'febrest'
 function toast(data: any) {
-  boardcast('TOAST', data)
+  boardcast('sys.toast', data)
 }
 
 function alert(data:any) {
-  boardcast('alert', data)
+  boardcast('sys.alert', data)
 }
 
 export default {
