@@ -134,13 +134,13 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 def appName = "流年"
 def appId = "lost"
-
+def packageName = "host.spencer.lost"
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "host.spencer.lost"
+        applicationId packageName
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -165,6 +165,7 @@ android {
     buildTypes {
         release {
             buildConfigField ("String", "ENV", '"prod"')
+            buildConfigField ("String", "PACKAGE_NAME", '"host.spencer.lost"')
             resValue "string", "app_name", "${appName}"
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
@@ -172,6 +173,7 @@ android {
         }
         debug {
             buildConfigField ("String", "ENV", '"dev"')
+            buildConfigField ("String", "PACKAGE_NAME", '"host.spencer.lost.debug"')
             resValue "string", "app_name", "${appName}DEV"
             minifyEnabled false
             applicationIdSuffix ".debug"

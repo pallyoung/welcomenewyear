@@ -5,7 +5,7 @@ import { MusicEngineType } from 'providers/MusicProvider';
 import { vw } from 'utils/resize';
 import FontIcon from 'components/FontIcon'
 import { Song, Singer } from 'providers/MusicProvider/MusicEngine';
-
+import { MusicManager } from 'native';
 function ItemButton({ text, icon, onPress }: { text: string, icon: string, onPress: () => void }) {
   return (
     <TouchableOpacity
@@ -39,7 +39,8 @@ export default class SongMenu extends PureComponent<Props> {
       song,
       onCancel
     } = this.props;
-
+    console.log(song)
+    MusicManager.download(song)
     onCancel();
   }
   render() {
